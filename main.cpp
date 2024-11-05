@@ -18,40 +18,32 @@ void findPath(Position ball, Position hole, int steps, vector<string>& result, c
     int dy = hole.y - ball.y;
 
     // Ensure the path is clear and valid
-    if (dx == steps && dy == 0) {
-        for (int i = 1; i < steps; ++i) {
+    if (dx == steps && dy == 0) { // Move right
+        for (int i = 1; i <= steps; ++i) {
             if (!isValidMove(ball.x + i, ball.y, result[0].size(), result.size(), grid) || result[ball.y][ball.x + i] != '.') {
                 return;
             }
-        }
-        for (int i = 1; i <= steps; ++i) {
             result[ball.y][ball.x + i] = '>';
         }
-    } else if (dx == -steps && dy == 0) {
-        for (int i = 1; i < steps; ++i) {
+    } else if (dx == -steps && dy == 0) { // Move left
+        for (int i = 1; i <= steps; ++i) {
             if (!isValidMove(ball.x - i, ball.y, result[0].size(), result.size(), grid) || result[ball.y][ball.x - i] != '.') {
                 return;
             }
-        }
-        for (int i = 1; i <= steps; ++i) {
             result[ball.y][ball.x - i] = '<';
         }
-    } else if (dy == steps && dx == 0) {
-        for (int i = 1; i < steps; ++i) {
+    } else if (dy == steps && dx == 0) { // Move down
+        for (int i = 1; i <= steps; ++i) {
             if (!isValidMove(ball.x, ball.y + i, result[0].size(), result.size(), grid) || result[ball.y + i][ball.x] != '.') {
                 return;
             }
-        }
-        for (int i = 1; i <= steps; ++i) {
             result[ball.y + i][ball.x] = 'v';
         }
-    } else if (dy == -steps && dx == 0) {
-        for (int i = 1; i < steps; ++i) {
+    } else if (dy == -steps && dx == 0) { // Move up
+        for (int i = 1; i <= steps; ++i) {
             if (!isValidMove(ball.x, ball.y - i, result[0].size(), result.size(), grid) || result[ball.y - i][ball.x] != '.') {
                 return;
             }
-        }
-        for (int i = 1; i <= steps; ++i) {
             result[ball.y - i][ball.x] = '^';
         }
     }
